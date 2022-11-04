@@ -42,9 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function car()
-    // {
-    //     return $this->belongsTo(Car::class , 'id');
-    //     // return $this->hasOne(Car::class);
-    // }
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
 }

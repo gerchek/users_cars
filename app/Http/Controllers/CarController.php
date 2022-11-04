@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Validator;
 
 class CarController extends Controller
 {
@@ -20,16 +21,44 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-        $cars = Car::create($request->all());
+        $rules=array(
+            'name'  =>"required|min:2|max:30",
+        );
 
-        return response()->json($cars, 201);
+        $validator=Validator::make($request->all(),$rules);
+        
+        if($validator->fails())
+        {
+            return $validator->errors();
+        }
+        else
+        {
+            $cars = Car::create($request->all());
+
+            return response()->json($cars, 201);
+        }
+       
     }
 
     public function update(Request $request, Car $cars)
     {
-        $cars->update($request->all());
+        $rules=array(
+            'name'  =>"required|min:2|max:30",
+        );
 
-        return response()->json($cars, 200);
+        $validator=Validator::make($request->all(),$rules);
+        
+        if($validator->fails())
+        {
+            return $validator->errors();
+        }
+        else
+        {
+            $cars->update($request->all());
+
+            return response()->json($cars, 200);
+        }
+        
     }
 
     public function delete(Car $cars)
