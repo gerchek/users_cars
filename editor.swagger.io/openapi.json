@@ -1,0 +1,587 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "users_cars",
+    "description": "Список автомобилей и список пользователей.Я здесь написал главный логику как забронировать автомобиль, я здесь user_id написал ручной , user_id можно получить используя token . на данный момент это главный часть проекта .поэтому я ручное сделал .",
+    "version": "1.0.0",
+    "contact": {
+      "email": "gerchekgerchek1@gmail.com",
+      "name": "Ata"
+    }
+  },
+  "tags": [
+    {
+      "name": "users"
+    },
+    {
+      "name": "cars"
+    },
+    {
+      "name": "book_a_car"
+    }
+  ],
+  "paths": {
+    "/api/cars": {
+      "get": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Get all cars",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cars"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/car/{id}": {
+      "get": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Get car by car id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Car not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Update car by car id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Update car by car id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent user in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Delete car",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deleted successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/car": {
+      "post": {
+        "tags": [
+          "cars"
+        ],
+        "summary": "Create car",
+        "description": "",
+        "requestBody": {
+          "description": "Created car object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all cars",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user by car id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update user by user id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Update user by user id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUser2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deleted successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create user",
+        "description": "",
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUser2"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/bookCar": {
+      "post": {
+        "tags": [
+          "book_a_car"
+        ],
+        "summary": "Book a car",
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBooking1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBookingSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "The car is already booked",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBookingError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CarModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "name": {
+            "type": "string",
+            "example": "BMW"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-11-04T04:42:05.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-11-04T04:42:05.000Z"
+          }
+        }
+      },
+      "Cars": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CarModel"
+        },
+        "example": [
+          {
+            "id": 1,
+            "name": "BMW",
+            "created_at": "2022-11-04T04:42:05.000Z",
+            "updated_at": "2022-11-04T04:42:05.000Z"
+          },
+          {
+            "id": 2,
+            "name": "AUDI",
+            "created_at": "2022-11-04T04:42:05.000Z",
+            "updated_at": "2022-11-04T04:42:05.000Z"
+          }
+        ]
+      },
+      "CreateCar": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "BMW"
+          }
+        }
+      },
+      "UserModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 10
+          },
+          "car_id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "name": {
+            "type": "string",
+            "example": "user1"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@gmail.com"
+          },
+          "email_verified_at": {
+            "type": "string",
+            "example": null
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-11-04T04:42:05.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-11-04T04:42:05.000Z"
+          },
+          "car": {
+            "$ref": "#/components/schemas/CarModel"
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UserModel"
+        }
+      },
+      "CreateUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "user1"
+          },
+          "email": {
+            "type": "string",
+            "example": "user1@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": 12345
+          }
+        }
+      },
+      "CreateUser2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 10
+          },
+          "car_id": {
+            "type": "integer",
+            "format": "int64",
+            "example": null
+          },
+          "name": {
+            "type": "string",
+            "example": "user1"
+          },
+          "email": {
+            "type": "string",
+            "example": "user1@gmail.com"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-11-04T04:42:05.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-11-04T04:42:05.000Z"
+          }
+        }
+      },
+      "AddBooking1": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "car_id": {
+            "type": "integer",
+            "example": 2
+          }
+        }
+      },
+      "AddBookingSuccess": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "string",
+            "example": "success"
+          }
+        }
+      },
+      "AddBookingError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "The car is already booked"
+          }
+        }
+      }
+    }
+  }
+}
