@@ -21,15 +21,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 //  ------------------------------------------------------------------------------------CARS
 Route::get('cars',[CarController::class, 'index']);
-Route::get('cars/{cars}',[CarController::class, 'show']);
-Route::post('cars',[CarController::class, 'store']);
-Route::put('cars/{cars}',[CarController::class, 'update']);
-Route::delete('cars/{cars}',[CarController::class, 'delete']);
+Route::get('car/{car}',[CarController::class, 'show']);
+Route::post('car',[CarController::class, 'store']);
+Route::put('car/{car}',[CarController::class, 'update']);
+Route::delete('car/{car}',[CarController::class, 'delete']);
 //  ------------------------------------------------------------------------------------USERS
 Route::get('users',[UserController::class, 'index']);
-Route::get('users/{user}',[UserController::class, 'show']);
-Route::post('users',[UserController::class, 'store']);
-Route::put('users/{user}',[UserController::class, 'update']);
-Route::delete('users/{user}',[UserController::class, 'delete']);
+Route::get('user/{user}',[UserController::class, 'show']);
+Route::post('user',[UserController::class, 'store']);
+Route::put('user/{user}',[UserController::class, 'update']);
+Route::delete('user/{user}',[UserController::class, 'delete']);
 
 Route::post('bookCar',[UserController::class, 'bookCar']);

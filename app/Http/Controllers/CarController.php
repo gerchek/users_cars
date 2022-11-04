@@ -14,9 +14,9 @@ class CarController extends Controller
         return Car::all();
     }
 
-    public function show(Car $cars)
+    public function show(Car $car)
     {
-        return $cars;
+        return $car;
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class CarController extends Controller
        
     }
 
-    public function update(Request $request, Car $cars)
+    public function update(Request $request, Car $car)
     {
         $rules=array(
             'name'  =>"required|min:2|max:30",
@@ -54,17 +54,17 @@ class CarController extends Controller
         }
         else
         {
-            $cars->update($request->all());
+            $car->update($request->all());
 
-            return response()->json($cars, 200);
+            return response()->json($car, 200);
         }
         
     }
 
-    public function delete(Car $cars)
+    public function delete(Car $car)
     {
-        $cars->delete();
+        $car->delete();
 
-        return response()->json(null, 204);
+        return response()->json(['success' => 'deleted successfully'], 200);
     }
 }
